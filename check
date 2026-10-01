@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+# Check that the recorded testsuite is reproducible.
+#
+# Usage:
+#   ./check [--robotool-home DIR] [--fdr-refines FILE] [--jobs N] [--no-verify] [ID...]
+#
+# Without IDs (full check), in place:
+#   1. regenerates testsuite-project/ from data/ (the generator keeps
+#      representations.aird);
+#   2. runs `testsuite-runner verify testsuite-project`, which rewrites
+#      verification-results.{csv,md} and verification-logs/;
+#   3. fails if any file tracked by Git, or any new file that is not ignored,
+#      differs from the commit (`git diff --exit-code` and `git status`),
+#      EXCEPT testsuite-project/verification-logs/. Those logs hold
+#      RoboTool's and FDR's raw output, which carries timestamps, so they are
+#      rewritten but not compared. Their names appear in the "reason/log"
+#      column of verification-results.csv and are compared there.
+#   A full verify compiles every test case with RoboTool and takes a long time
+#   (about 5 minutes with --jobs 8 on a desktop machine, far longer one at a
+#   time); --jobs N checks N test cases at a time (default: the number of
+#   processors). Use --no-verify to check only that regeneration reproduces
+#   the committed project.
+#
+# With IDs (partial check), in a temporary copy; nothing in the repository
+# changes. The listed cases are generated and verified in a fresh project and
+# compared with the committed ones: the model file, the case-index.csv row and
+# the verification-results.csv row (status, category and reason, without the
+# log file name, which depends on the numbering within a run).
+#
+# Tools: `testsuite-generator` and `testsuite-runner` from PATH, or the
+# programs named by TESTSUITE_GENERATOR and TESTSUITE_RUNNER. RoboTool and
+# FDR are given by --robotool-home / --fdr-refines or by ROBOTOOL_HOME /
+# FDR_REFINES.
+set -euo pipefail
+
+generator=${TESTSUITE_GENERATOR:-testsuite-generator}
+runner=${TESTSUITE_RUNNER:-testsuite-runner}
+verify=1
+ids=()
+runner_opts=()
+jobs=$(nproc 2>/dev/null || echo 1)
+while [ $# -gt 0 ]; do
+  case $1 in
+    --robotool-home) runner_opts+=(--robotool-home "$2"); shift 2 ;;
+    --fdr-refines) runner_opts+=(--fdr-refines "$2"); shift 2 ;;
+    --jobs) jobs=$2; shift 2 ;;
+    --no-verify) verify=0; shift ;;
+    -h|--help) sed -n '2,/^set -euo/p' "$0" | sed '$d;s/^# \{0,1\}//'; exit 0 ;;
+    -*) echo "check: unknown option $1" >&2; exit 2 ;;
+    *) ids+=("$1"); shift ;;
+  esac
+done
+
+cd "$(dirname "$0")"
+for tool in "$generator" "$runner"; do
+  command -v "$tool" >/dev/null || { echo "check: $tool not found (install it, or set TESTSUITE_GENERATOR / TESTSUITE_RUNNER)" >&2; exit 2; }
+done
+
+if [ ${#ids[@]} -eq 0 ]; then
+  echo "Regenerating testsuite-project/ from data/"
+  "$generator" data testsuite-project
+  if [ $verify -eq 1 ]; then
+    echo "Verifying every test case; this compiles each one with RoboTool and takes a long time"
+    # verify exits non-zero when any case fails, which this suite records
+    "$runner" verify --jobs "$jobs" testsuite-project ${runner_opts[@]+"${runner_opts[@]}"} || true
+  fi
+  status=0
+  git diff --exit-code -- . ':(exclude)testsuite-project/verification-logs' || status=1
+  untracked=$(git ls-files --others --exclude-standard -- . ':(exclude)testsuite-project/verification-logs')
+  if [ -n "$untracked" ]; then
+    echo "Untracked files that are not ignored:" >&2
+    echo "$untracked" >&2
+    status=1
+  fi
+  if [ $status -eq 0 ]; then echo "check: OK"; else echo "check: FAILED" >&2; fi
+  exit $status
+fi
+
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+"$generator" data "$tmp/project" "${ids[@]}"
+"$runner" verify --jobs "$jobs" "$tmp/project" ${runner_opts[@]+"${runner_opts[@]}"} || true
+
+# Print the rows of CSV file $2 whose ID is $1, without the log file name
+# and any carriage return. The ID is the third column of case-index.csv and
+# the first of verification-results.csv.
+rows() {
+  awk -F, -v id="$1" -v col="$3" '$col == id { gsub(/\r/, ""); sub(/; log=[^"]*/, ""); print }' "$2"
+}
+status=0
+for id in "${ids[@]}"; do
+  for spec in case-index.csv:3 verification-results.csv:1; do
+    file=${spec%:*}
+    new=$(rows "$id" "$tmp/project/$file" "${spec#*:}")
+    old=$(rows "$id" "testsuite-project/$file" "${spec#*:}")
+    # Cases that cannot be generated have no case-index.csv row.
+    if [ "$new" != "$old" ] || { [ -z "$old" ] && [ "$file" = verification-results.csv ]; }; then
+      echo "check: $id differs in $file" >&2
+      echo "  recorded:    $old" >&2
+      echo "  regenerated: $new" >&2
+      status=1
+    fi
+  done
+  model=$(awk -F, -v id="$id" '$3 == id { print $4 }' "$tmp/project/case-index.csv")
+  if [ -n "$model" ] && ! cmp -s "$tmp/project/$model" "testsuite-project/$model"; then
+    echo "check: $id model $model differs" >&2
+    status=1
+  fi
+done
+if [ $status -eq 0 ]; then echo "check: OK (${#ids[@]} cases)"; else echo "check: FAILED" >&2; fi
+exit $status

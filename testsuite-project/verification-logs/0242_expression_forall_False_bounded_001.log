@@ -1,0 +1,55 @@
+process status: exit status: 255
+
+--- stdout ---
+jar:file:<ROBOTOOL_HOME>/plugins/circus.robocalc.robochart.textual_3.1.0.202506240935.jar!/lib/robochart
+Loaded: lib/robochart/relation_toolkit.rct
+Loaded: lib/robochart/core.rct
+Loaded: lib/robochart/function_toolkit.rct
+Loaded: lib/robochart/sequence_toolkit.rct
+Loaded: lib/robochart/set_toolkit.rct
+Loaded: <test-case-project>/cases/expressions/forall_False_bounded/001.rct
+0    [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+1    [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+15   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+16   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+19   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+19   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+Iterated compression status: true
+Assertions default compression status: false
+Generating [comp]: file:<test-case-project>/cases/expressions/forall_False_bounded/001.rct
+
+LOG: Case not treated by expression compiler: class circus.robocalc.robochart.impl.ForallImpl
+Generator failed with exception:
+
+--- stderr ---
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:<ROBOTOOL_HOME>/plugins/com.google.guava_30.1.0.v20210127-2300.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+java.lang.RuntimeException: Case not treated by expression compiler: class circus.robocalc.robochart.impl.ForallImpl
+	at circus.robocalc.robochart.generator.csp.untimed.ExpressionGenerator._compileExpression(ExpressionGenerator.java:1605)
+	at circus.robocalc.robochart.generator.csp.untimed.ExpressionGenerator.compileExpression(ExpressionGenerator.java:1919)
+	at circus.robocalc.robochart.generator.csp.untimed.ExpressionGenerator._compileExpression(ExpressionGenerator.java:1321)
+	at circus.robocalc.robochart.generator.csp.untimed.ExpressionGenerator.compileExpression(ExpressionGenerator.java:1887)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStatementGenerator.compileCommunicationStmt(CStatementGenerator.java:571)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStatementGenerator._compileStatement(CStatementGenerator.java:359)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStatementGenerator.compileStatement(CStatementGenerator.java:1110)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStatementGenerator.compileAction(CStatementGenerator.java:95)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CTransitionGenerator.compileTransitionAction(CTransitionGenerator.java:99)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CTransitionGenerator.compileTransition(CTransitionGenerator.java:168)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CTransitionGenerator.transitions_rule(CTransitionGenerator.java:816)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStateMachineGenerator._compileStateMachineBody(CStateMachineGenerator.java:589)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStateMachineGenerator._compileStateMachineBody(CStateMachineGenerator.java:561)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStateMachineGenerator.compileStateMachineBody(CStateMachineGenerator.java:1499)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStateMachineGenerator.compileProcesses(CStateMachineGenerator.java:553)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CStateMachineGenerator.compileStateMachine(CStateMachineGenerator.java:151)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CControllerGenerator.compileController(CControllerGenerator.java:674)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CModuleGenerator.compileModule(CModuleGenerator.java:438)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CPackageGenerator.compilePackageModule(CPackageGenerator.java:1714)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CUntimedGenerator.generateRoboChart(CUntimedGenerator.java:337)
+	at circus.robocalc.robochart.generator.csp.comp.untimed.CUntimedGenerator.doGenerate(CUntimedGenerator.java:224)
+	at circus.robocalc.robochart.generator.csp.Main.runGenerator(Main.java:252)
+	at circus.robocalc.robochart.generator.csp.Main.main(Main.java:71)

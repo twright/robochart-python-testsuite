@@ -1,0 +1,81 @@
+kind,feature,id,status,category,reason
+expression,decimal,decimal/000,failure,oracle_representation_limit,oracle cannot represent fractional real observation 2.5 exactly
+expression,tuple_empty,tuple_empty/000,failure,unsupported_robochart_syntax,RoboChart requires tuples to contain at least two values
+expression,tuple_single,tuple_single/000,failure,unsupported_robochart_syntax,RoboChart requires tuples to contain at least two values
+expression,record_empty,record_empty/000,failure,unsupported_robochart_syntax,RoboChart record literals require at least one field
+expression,since,since/000,failure,oracle_representation_limit,oracle cannot represent fractional real observation 7.5 exactly
+expression,since_entry,since_entry/000,failure,unsupported_robochart_syntax,RoboChart keyword state cannot name a state in sinceEntry
+expression,inverse,inverse/000,failure,oracle_representation_limit,oracle cannot represent fractional real observation -1.9999999999999996 exactly
+expression,special_real,special_real/000,failure,unsupported_robochart_syntax,RoboChart type names cannot be used as value expressions
+expression,divide,divide/002,failure,oracle_representation_limit,oracle cannot represent fractional real observation -1.5 exactly
+expression,divide,divide/003,failure,oracle_representation_limit,oracle cannot represent fractional real observation -0.42857142857142855 exactly
+expression,divide,divide/008,failure,oracle_representation_limit,oracle cannot represent fractional real observation -0.6666666666666666 exactly
+expression,divide,divide/011,failure,oracle_representation_limit,oracle cannot represent fractional real observation 0.2857142857142857 exactly
+expression,divide,divide/012,failure,oracle_representation_limit,oracle cannot represent fractional real observation -2.3333333333333335 exactly
+expression,divide,divide/014,failure,oracle_representation_limit,oracle cannot represent fractional real observation 3.5 exactly
+expression,cast,cast/000,failure,oracle_representation_limit,oracle cannot represent fractional real observation 2.5 exactly
+expression,type_check,type_check/001,failure,oracle_representation_limit,oracle cannot represent fractional real observation 1.5 exactly
+expression,range_True_True_True,range_True_True_True/000,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/001,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/002,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/003,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/004,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/005,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/006,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/007,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/008,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/009,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/010,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/011,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/012,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/013,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/014,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_True_True,range_True_True_True/015,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/000,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/001,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/002,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/003,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/004,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/005,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/006,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/007,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/008,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/009,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/010,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/011,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/012,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/013,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/014,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_True_False_True,range_True_False_True/015,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/000,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/001,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/002,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/003,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/004,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/005,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/006,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/007,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/008,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/009,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/010,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/011,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/012,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/013,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/014,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_True_True,range_False_True_True/015,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/000,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/001,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/002,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/003,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/004,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/005,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/006,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/007,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/008,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/009,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/010,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/011,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/012,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/013,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/014,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound
+expression,range_False_False_True,range_False_False_True/015,failure,unsupported_robochart_syntax,RoboChart interval syntax requires an upper bound

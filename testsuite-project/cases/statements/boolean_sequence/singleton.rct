@@ -1,0 +1,37 @@
+// Statement case: boolean_sequence/singleton
+// Assign a singleton boolean sequence.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "Seq(boolean)": [
+//       [],
+//       [
+//         true
+//       ]
+//     ]
+//   }
+// }
+package statement_boolean_sequence_singleton
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var flags : Seq(boolean) = <>
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action flags = <true>; output ! Obs(| flags = flags |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { flags: Seq(boolean) }

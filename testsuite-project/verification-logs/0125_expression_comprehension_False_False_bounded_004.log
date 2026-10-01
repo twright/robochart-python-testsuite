@@ -1,0 +1,128 @@
+process status: exit status: 0
+
+--- stdout ---
+jar:file:<ROBOTOOL_HOME>/plugins/circus.robocalc.robochart.textual_3.1.0.202506240935.jar!/lib/robochart
+Loaded: lib/robochart/relation_toolkit.rct
+Loaded: lib/robochart/core.rct
+Loaded: lib/robochart/function_toolkit.rct
+Loaded: lib/robochart/sequence_toolkit.rct
+Loaded: lib/robochart/set_toolkit.rct
+Loaded: <test-case-project>/cases/expressions/comprehension_False_False_bounded/004.rct
+0    [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+0    [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+12   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+12   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+Iterated compression status: true
+Assertions default compression status: false
+Generating [comp]: file:<test-case-project>/cases/expressions/comprehension_False_False_bounded/004.rct
+
+	Generating defs file expression_comprehension_False_False_bounded_004_defs.csp
+	Completed generation defs file expression_comprehension_False_False_bounded_004_defs.csp
+
+	Generating state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+	Completed generation of state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+
+	Generating controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+	Completed generation of controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+
+	Generating module expression_comprehension_False_False_bounded_004_mod0
+	Completed generation module expression_comprehension_False_False_bounded_004_mod0
+
+Iterated compression status: true
+Assertions default compression status: false
+Generating [comp]: file:<test-case-project>/cases/expressions/comprehension_False_False_bounded/004.rct
+
+	Generating defs file expression_comprehension_False_False_bounded_004_defs.csp
+	Completed generation defs file expression_comprehension_False_False_bounded_004_defs.csp
+
+	Generating state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+	Completed generation of state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+
+	Generating controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+	Completed generation of controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+
+	Generating module expression_comprehension_False_False_bounded_004_mod0
+	Completed generation module expression_comprehension_False_False_bounded_004_mod0
+
+Code generation finished.
+
+--- stderr ---
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:<ROBOTOOL_HOME>/plugins/com.google.guava_30.1.0.v20210127-2300.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+--- FDR stdout ---
+Welcome to FDR Version 4.2.7 copyright 2016 Oxford University Innovation Ltd. All Rights Reserved.
+License: Academic license for non-commercial use only
+expected [FD= model: Passed
+
+--- FDR stderr ---
+
+--- recheck with core_int {-3..3} ---
+process status: exit status: 0
+
+--- stdout ---
+jar:file:<ROBOTOOL_HOME>/plugins/circus.robocalc.robochart.textual_3.1.0.202506240935.jar!/lib/robochart
+Loaded: lib/robochart/relation_toolkit.rct
+Loaded: lib/robochart/core.rct
+Loaded: lib/robochart/function_toolkit.rct
+Loaded: lib/robochart/sequence_toolkit.rct
+Loaded: lib/robochart/set_toolkit.rct
+Loaded: <test-case-project>/cases/expressions/comprehension_False_False_bounded/004.rct
+0    [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+0    [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+12   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+12   [main] INFO  t.linking.impl.ImportedNamesAdapter  - getElements should be called with a QualifiedName during linking.
+Iterated compression status: true
+Assertions default compression status: false
+Generating [comp]: file:<test-case-project>/cases/expressions/comprehension_False_False_bounded/004.rct
+
+	Generating defs file expression_comprehension_False_False_bounded_004_defs.csp
+	Completed generation defs file expression_comprehension_False_False_bounded_004_defs.csp
+
+	Generating state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+	Completed generation of state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+
+	Generating controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+	Completed generation of controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+
+	Generating module expression_comprehension_False_False_bounded_004_mod0
+	Completed generation module expression_comprehension_False_False_bounded_004_mod0
+
+Iterated compression status: true
+Assertions default compression status: false
+Generating [comp]: file:<test-case-project>/cases/expressions/comprehension_False_False_bounded/004.rct
+
+	Generating defs file expression_comprehension_False_False_bounded_004_defs.csp
+	Completed generation defs file expression_comprehension_False_False_bounded_004_defs.csp
+
+	Generating state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+	Completed generation of state machine definition expression_comprehension_False_False_bounded_004_mod0_ctrl0_stm0
+
+	Generating controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+	Completed generation of controller definition expression_comprehension_False_False_bounded_004_mod0_ctrl0
+
+	Generating module expression_comprehension_False_False_bounded_004_mod0
+	Completed generation module expression_comprehension_False_False_bounded_004_mod0
+
+Code generation finished.
+
+--- stderr ---
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:<ROBOTOOL_HOME>/plugins/com.google.guava_30.1.0.v20210127-2300.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+--- FDR stdout ---
+Welcome to FDR Version 4.2.7 copyright 2016 Oxford University Innovation Ltd. All Rights Reserved.
+License: Academic license for non-commercial use only
+expected [FD= model: Passed
+
+--- FDR stderr ---

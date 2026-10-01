@@ -1,0 +1,26 @@
+package expression_add_011
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 {
+    event output : int
+  }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      // context rule: inferred_inputs
+      const a : int = 2
+      const b : int = 7
+      // context rule: inferred_output_type
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (a + b)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

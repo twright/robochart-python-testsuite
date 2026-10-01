@@ -1,0 +1,24 @@
+package expression_lambda_False_001
+import relation_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 {
+    event output : Set(int)
+  }
+  controller ctrl0 {
+    event output : Set(int)
+    stm stm0 {
+      // shape: lambda_graph
+      const arg : int
+      event output : Set(int)
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! rimage((lambda x: int @ x + 1), {arg})
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

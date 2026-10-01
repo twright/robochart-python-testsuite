@@ -1,0 +1,25 @@
+package expression_enum_literal_resolution_000
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 {
+    event output : Color
+  }
+  controller ctrl0 {
+    event output : Color
+    stm stm0 {
+      // context rule: declared_output_type
+      event output : Color
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (Color::red)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+// context rule: declared_datatypes
+enumeration Color { red green blue }

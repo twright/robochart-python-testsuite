@@ -1,0 +1,41 @@
+{
+  "description": [
+    "Fixed context for original ExpressionTests rows whose expressions name declarations that cases.csv does not supply.",
+    "ExpressionTests does not record the Python environment used for these rows, so each value below is a fixture choice made for this suite.",
+    "The generator never derives these definitions from recorded outputs. RoboChart library names (for example size) come from library imports and must not be declared here.",
+    "Rows that RoboChart cannot express, whatever the context (for example matrix used as an identifier, pkg::value as a constant, or TRUE as a literal), have no fixture."
+  ],
+  "fixtures": {
+    "obj": {
+      "note": "A one-field record constant for obj.value; the field value 4 is a fixture choice.",
+      "datatypes": { "Obj": [["value", "int"]] },
+      "constants": { "obj": { "type": "Obj", "value": { "value": 4 } } }
+    },
+    "items": {
+      "note": "A three-element integer sequence shared by the first- and last-index rows; size comes from sequence_toolkit.",
+      "constants": { "items": { "type": "Seq(int)", "value": [0, 1, 2] } }
+    },
+    "add": {
+      "note": "Integer addition, as the function name states.",
+      "functions": ["function add(x : int, y : int) : int { postcondition result == x + y }"],
+      "function_definitions": { "add": { "parameters": ["x", "y"], "body": "x + y" } }
+    },
+    "answer": {
+      "note": "A constant zero-parameter function; the value 42 is a fixture choice.",
+      "functions": ["function answer() : int { postcondition result == 42 }"],
+      "function_definitions": { "answer": { "parameters": [], "body": "42" } }
+    },
+    "Color": {
+      "note": "An enumeration containing red and two other literals, so that the observed literal is not the type's only value.",
+      "datatypes": { "Color": { "enumeration": ["red", "green", "blue"] } }
+    }
+  },
+  "cases": {
+    "attribute/000": { "fixtures": ["obj"], "output_type": "int" },
+    "index_first/000": { "fixtures": ["items"], "output_type": "int" },
+    "index_last/000": { "fixtures": ["items"], "output_type": "int" },
+    "call_args/000": { "fixtures": ["add"], "output_type": "int" },
+    "call_empty/000": { "fixtures": ["answer"], "output_type": "int" },
+    "enum_literal_resolution/000": { "fixtures": ["Color"], "output_type": "Color" }
+  }
+}

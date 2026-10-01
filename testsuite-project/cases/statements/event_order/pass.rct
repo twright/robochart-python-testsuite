@@ -1,0 +1,48 @@
+// Statement case: event_order/pass
+// Emit the typed SpinCommand and signal in the specified order; event order is checked.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "SpinCommand": [
+//       {
+//         "angleVelocity": 2,
+//         "duration": 1
+//       }
+//     ]
+//   }
+// }
+package statement_event_order_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  connection ctrl0 on accepted to rp0 on accepted
+  connection ctrl0 on command to rp0 on command
+  robotic platform rp0 {
+    event output : Obs
+    event accepted
+    event command : SpinCommand
+  }
+  controller ctrl0 {
+    event output : Obs
+    event accepted
+    event command : SpinCommand
+    stm stm0 {
+      var cmd : SpinCommand = SpinCommand(| angleVelocity = 2, duration = 1 |)
+      event output : Obs
+      event accepted
+      event command : SpinCommand
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action command ! cmd; accepted; output ! Obs(| cmd = cmd |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+    connection stm0 on accepted to ctrl0 on accepted
+    connection stm0 on command to ctrl0 on command
+  }
+}
+record Obs { cmd: SpinCommand }
+datatype SpinCommand { angleVelocity : int duration : int }

@@ -1,0 +1,59 @@
+// Statement case: nested_sequence_read/pass
+// Read one nested sequence at a time with 1-based indexing; integer values.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "Seq(Seq(int))": [
+//       [
+//         [
+//           1,
+//           2
+//         ],
+//         [
+//           3,
+//           4
+//         ]
+//       ]
+//     ],
+//     "Seq(int)": [
+//       [
+//         1,
+//         2
+//       ],
+//       [
+//         3,
+//         4
+//       ],
+//       [
+//         0,
+//         0
+//       ]
+//     ]
+//   }
+// }
+package statement_nested_sequence_read_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var picked : int = 0
+      var row : Seq(int) = <0, 0>
+      var rows : Seq(Seq(int)) = <<1, 2>, <3, 4>>
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action row = rows[2]; picked = row[2]; output ! Obs(| rows = rows, row = row, picked = picked |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { rows: Seq(Seq(int)) row: Seq(int) picked: int }

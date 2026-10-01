@@ -1,0 +1,42 @@
+// Statement case: record_update/pass
+// Update SpinCommand.angleVelocity and preserve duration; integer angle-velocity units.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "SpinCommand": [
+//       {
+//         "angleVelocity": 2,
+//         "duration": 3
+//       },
+//       {
+//         "angleVelocity": 4,
+//         "duration": 3
+//       }
+//     ]
+//   }
+// }
+package statement_record_update_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var command : SpinCommand = SpinCommand(| angleVelocity = 2, duration = 3 |)
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action command.angleVelocity = 4; output ! Obs(| command = command |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { command: SpinCommand }
+datatype SpinCommand { angleVelocity : int duration : int }

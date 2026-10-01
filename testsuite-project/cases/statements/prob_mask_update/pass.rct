@@ -1,0 +1,52 @@
+// Statement case: prob_mask_update/pass
+// Read the second integer value into sample, compare it with threshold, and preserve ProbLidarMask.baseAngle.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "ProbLidarMask": [
+//       {
+//         "baseAngle": -1,
+//         "values": [
+//           1,
+//           4,
+//           2
+//         ]
+//       }
+//     ],
+//     "Seq(int)": [
+//       [
+//         1,
+//         4,
+//         2
+//       ]
+//     ]
+//   }
+// }
+package statement_prob_mask_update_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var above : boolean = false
+      var mask : ProbLidarMask = ProbLidarMask(| values = <1, 4, 2>, baseAngle = -1 |)
+      var sample : int = 0
+      var threshold : int = 3
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action sample = (mask.values)[2]; above = sample >= threshold; output ! Obs(| mask = mask, sample = sample, threshold = threshold, above = above |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { mask: ProbLidarMask sample: int threshold: int above: boolean }
+datatype ProbLidarMask { values : Seq(int) baseAngle : int }

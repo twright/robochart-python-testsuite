@@ -1,0 +1,41 @@
+// Statement case: bounded_scan/three
+// Unroll three scan steps over 1-based ranges indices; integer values and total.
+// Fixed iteration fixture: {"index":"i","count":3}
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "Seq(int)": [
+//       [
+//         1,
+//         2,
+//         3
+//       ]
+//     ]
+//   }
+// }
+package statement_bounded_scan_three
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var i : int = 0
+      const ranges : Seq(int) = <1, 2, 3>
+      var total : int = 0
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action i = 1; total = total + ranges[1]; i = 2; total = total + ranges[2]; i = 3; total = total + ranges[3]; output ! Obs(| i = i, total = total, ranges = ranges |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { i: int total: int ranges: Seq(int) }

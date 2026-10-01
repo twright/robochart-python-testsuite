@@ -1,0 +1,43 @@
+// Statement case: input_event/pass
+// Bind one integer scan input to reading and add it to total.
+package statement_input_event_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  connection rp0 on scan to ctrl0 on scan
+  robotic platform rp0 {
+    event output : Obs
+    event scan : int
+  }
+  controller ctrl0 {
+    event output : Obs
+    event scan : int
+    stm stm0 {
+      var reading : int = 0
+      var total : int = 1
+      event output : Obs
+      event scan : int
+      initial i0
+      state s0 {}
+      state ready {}
+      state received0 {}
+      transition start {
+        from i0
+        to ready
+      }
+      transition receive0 {
+        from ready
+        to received0
+        trigger scan ? reading
+      }
+      transition t0 {
+        from received0
+        to s0
+        action total = total + reading; output ! Obs(| reading = reading, total = total |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+    connection ctrl0 on scan to stm0 on scan
+  }
+}
+record Obs { reading: int total: int }

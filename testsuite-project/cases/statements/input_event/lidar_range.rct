@@ -1,0 +1,79 @@
+// Statement case: input_event/lidar_range
+// Receive compact LidarRange metadata, read ranges length and first sample; observe scalar results only.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "LidarRange": [
+//       {
+//         "angleIncrement": 1,
+//         "angleMax": 1,
+//         "angleMin": -1,
+//         "intensities": [
+//           1,
+//           2
+//         ],
+//         "rangeMax": 5,
+//         "rangeMin": 0,
+//         "ranges": [
+//           3,
+//           4
+//         ],
+//         "scanTime": 1,
+//         "timeIncrement": 0
+//       }
+//     ],
+//     "Seq(int)": [
+//       [
+//         3,
+//         4
+//       ],
+//       [
+//         1,
+//         2
+//       ]
+//     ]
+//   }
+// }
+package statement_input_event_lidar_range
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  connection rp0 on scan to ctrl0 on scan
+  robotic platform rp0 {
+    event output : Obs
+    event scan : LidarRange
+  }
+  controller ctrl0 {
+    event output : Obs
+    event scan : LidarRange
+    stm stm0 {
+      var count : int = 0
+      var first : int = 0
+      var reading : LidarRange = LidarRange(| angleMin = -1, angleMax = 1, angleIncrement = 1, timeIncrement = 0, rangeMin = 0, rangeMax = 5, scanTime = 1, ranges = <3, 4>, intensities = <1, 2> |)
+      event output : Obs
+      event scan : LidarRange
+      initial i0
+      state s0 {}
+      state ready {}
+      state received0 {}
+      transition start {
+        from i0
+        to ready
+      }
+      transition receive0 {
+        from ready
+        to received0
+        trigger scan ? reading
+      }
+      transition t0 {
+        from received0
+        to s0
+        action count = size(reading.ranges); first = (reading.ranges)[1]; output ! Obs(| count = count, first = first |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+    connection ctrl0 on scan to stm0 on scan
+  }
+}
+record Obs { count: int first: int }
+datatype LidarRange { angleMin : int angleMax : int angleIncrement : int timeIncrement : int rangeMin : int rangeMax : int scanTime : int ranges : Seq(int) intensities : Seq(int) }

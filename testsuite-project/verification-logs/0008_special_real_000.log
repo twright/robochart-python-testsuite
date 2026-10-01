@@ -1,0 +1,3 @@
+Unsupported model input could not be generated.
+Category: unsupported_robochart_syntax
+Reason: RoboChart type names cannot be used as value expressions

@@ -1,0 +1,4 @@
+# CSV files include deliberate whitespace inside quoted expressions.
+*.csv whitespace=-trailing-space
+# This model preserves the source case's whitespace expression verbatim.
+testsuite-project/cases/expressions/whitespace/000.rct whitespace=-trailing-space

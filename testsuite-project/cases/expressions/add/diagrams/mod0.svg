@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="393" height="158" viewBox="0 0 393 158" font-family="DejaVu Sans, Liberation Sans, Arial, Helvetica, sans-serif" font-size="12">
+<rect width="393" height="158" fill="#ffffff"/>
+<rect x="12.0" y="12.0" width="369.0" height="134.0" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+<path d="M12.0 12.0 L120.0 12.0 L120.0 26.0 L112.0 34.0 L12.0 34.0 z" fill="#f6f8fa" stroke="#1f2328" stroke-width="1.5"/>
+<rect x="222.0" y="50.0" width="135.0" height="72.0" rx="4.0" fill="#f1e9fb" stroke="#7446a8" stroke-width="1.5"/>
+<rect x="217.0" y="94.0" width="10.0" height="10.0" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+<rect x="36.0" y="50.0" width="120.0" height="72.0" rx="4.0" fill="#e7f0fd" stroke="#3b6fb6" stroke-width="1.5"/>
+<rect x="151.0" y="94.0" width="10.0" height="10.0" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+<path d="M161.0 99.0 L217.0 99.0" fill="none" stroke="#3d444d" stroke-width="1.3" stroke-dasharray="6 4"/>
+<path d="M217.0 99.0 L208.0 103.1 L208.0 95.0 z" fill="#3d444d"/>
+<text x="20.0" y="28.0" text-anchor="start" fill="#1f2328" xml:space="preserve">module <tspan font-weight="bold">mod0</tspan></text>
+<text x="289.5" y="66.0" text-anchor="middle" fill="#57606a" xml:space="preserve">«robotic platform»</text>
+<text x="289.5" y="82.0" text-anchor="middle" fill="#1f2328" xml:space="preserve"><tspan font-weight="bold">rp0</tspan></text>
+<text x="231.0" y="103.0" text-anchor="start" fill="#1f2328" xml:space="preserve">output</text>
+<text x="96.0" y="66.0" text-anchor="middle" fill="#57606a" xml:space="preserve">«controller»</text>
+<text x="96.0" y="82.0" text-anchor="middle" fill="#1f2328" xml:space="preserve"><tspan font-weight="bold">ctrl0</tspan></text>
+<text x="147.0" y="103.0" text-anchor="end" fill="#1f2328" xml:space="preserve">output</text>
+</svg>

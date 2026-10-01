@@ -1,0 +1,83 @@
+// Statement case: record_nested/pass
+// Update SpinConfig.period while preserving its ordered Seq(SpinCommand); integer units.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "Seq(SpinCommand)": [
+//       [
+//         {
+//           "angleVelocity": 1,
+//           "duration": 2
+//         },
+//         {
+//           "angleVelocity": 3,
+//           "duration": 4
+//         }
+//       ]
+//     ],
+//     "SpinCommand": [
+//       {
+//         "angleVelocity": 1,
+//         "duration": 2
+//       },
+//       {
+//         "angleVelocity": 3,
+//         "duration": 4
+//       }
+//     ],
+//     "SpinConfig": [
+//       {
+//         "commands": [
+//           {
+//             "angleVelocity": 1,
+//             "duration": 2
+//           },
+//           {
+//             "angleVelocity": 3,
+//             "duration": 4
+//           }
+//         ],
+//         "period": 5
+//       },
+//       {
+//         "commands": [
+//           {
+//             "angleVelocity": 1,
+//             "duration": 2
+//           },
+//           {
+//             "angleVelocity": 3,
+//             "duration": 4
+//           }
+//         ],
+//         "period": 6
+//       }
+//     ]
+//   }
+// }
+package statement_record_nested_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var config : SpinConfig = SpinConfig(| commands = <SpinCommand(| angleVelocity = 1, duration = 2 |), SpinCommand(| angleVelocity = 3, duration = 4 |)>, period = 5 |)
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action config.period = 6; output ! Obs(| config = config |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { config: SpinConfig }
+datatype SpinCommand { angleVelocity : int duration : int }
+datatype SpinConfig { commands : Seq(SpinCommand) period : int }

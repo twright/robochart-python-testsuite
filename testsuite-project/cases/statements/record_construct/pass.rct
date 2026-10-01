@@ -1,0 +1,42 @@
+// Statement case: record_construct/pass
+// Construct a SpinCommand with its declared integer fields.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "SpinCommand": [
+//       {
+//         "angleVelocity": 1,
+//         "duration": 4
+//       },
+//       {
+//         "angleVelocity": 3,
+//         "duration": 2
+//       }
+//     ]
+//   }
+// }
+package statement_record_construct_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var command : SpinCommand = SpinCommand(| angleVelocity = 1, duration = 4 |)
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action command = SpinCommand(| angleVelocity = 3, duration = 2 |); output ! Obs(| command = command |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { command: SpinCommand }
+datatype SpinCommand { angleVelocity : int duration : int }

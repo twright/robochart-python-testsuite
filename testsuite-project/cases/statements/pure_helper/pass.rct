@@ -1,0 +1,28 @@
+// Statement case: pure_helper/pass
+// Check the call to increment with immutable x=2; explicit CSP fixture supplies x+1. The helper body is fixture semantics, not independently verified.
+package statement_pure_helper_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      const x : int = 2
+      var y : int = 0
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action y = increment(x); output ! Obs(| x = x, y = y |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { x: int y: int }
+function increment(x: int): int { postcondition result == x + 1 }

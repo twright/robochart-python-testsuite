@@ -1,0 +1,3 @@
+Unsupported model input could not be generated.
+Category: unsupported_robochart_syntax
+Reason: RoboChart keyword state cannot name a state in sinceEntry

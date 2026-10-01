@@ -1,0 +1,39 @@
+// Statement case: sequence_index/pass
+// Read the first sequence element with 1-based indexing; integer values.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "Seq(int)": [
+//       [
+//         4,
+//         2,
+//         6
+//       ]
+//     ]
+//   }
+// }
+package statement_sequence_index_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var items : Seq(int) = <4, 2, 6>
+      var picked : int = 0
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action picked = items[1]; output ! Obs(| items = items, picked = picked |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { items: Seq(int) picked: int }

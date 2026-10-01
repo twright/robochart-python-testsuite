@@ -1,0 +1,27 @@
+// Statement case: assignment/pass
+// Correct translation; observe both variables.
+package statement_assignment_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var x : int = 2
+      var y : int = 7
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action x = x + 1; output ! Obs(| x = x, y = y |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { x: int y: int }

@@ -1,0 +1,3 @@
+Unsupported model input could not be generated.
+Category: unsupported_robochart_syntax
+Reason: RoboChart interval syntax requires an upper bound

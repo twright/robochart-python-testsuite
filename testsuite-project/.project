@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+  <name>testsuite-project</name>
+  <comment>Generated RoboChart expression and statement tests</comment>
+  <projects/>
+  <buildSpec><buildCommand><name>org.eclipse.xtext.ui.shared.xtextBuilder</name><arguments/></buildCommand></buildSpec>
+  <natures><nature>org.eclipse.sirius.nature.modelingproject</nature><nature>org.eclipse.xtext.ui.shared.xtextNature</nature></natures>
+</projectDescription>

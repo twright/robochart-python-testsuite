@@ -1,0 +1,3 @@
+Unsupported model input could not be generated.
+Category: oracle_representation_limit
+Reason: oracle cannot represent fractional real observation 7.5 exactly

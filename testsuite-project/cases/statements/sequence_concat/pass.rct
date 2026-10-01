@@ -1,0 +1,48 @@
+// Statement case: sequence_concat/pass
+// Concatenate two integer sequences; sequence length is at most three.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "Seq(int)": [
+//       [
+//         1,
+//         2
+//       ],
+//       [
+//         3
+//       ],
+//       [],
+//       [
+//         1,
+//         2,
+//         3
+//       ]
+//     ]
+//   }
+// }
+package statement_sequence_concat_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var joined : Seq(int) = <>
+      const left : Seq(int) = <1, 2>
+      const right : Seq(int) = <3>
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action joined = left ^ right; output ! Obs(| left = left, right = right, joined = joined |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { left: Seq(int) right: Seq(int) joined: Seq(int) }

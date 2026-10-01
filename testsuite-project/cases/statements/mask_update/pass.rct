@@ -1,0 +1,62 @@
+// Statement case: mask_update/pass
+// Replace the boolean values field and preserve BoolLidarMask.baseAngle.
+// Finite CSP fixture domains:
+// {
+//   "values": {
+//     "BoolLidarMask": [
+//       {
+//         "baseAngle": -1,
+//         "values": [
+//           false,
+//           true,
+//           false
+//         ]
+//       },
+//       {
+//         "baseAngle": -1,
+//         "values": [
+//           false,
+//           false,
+//           false
+//         ]
+//       }
+//     ],
+//     "Seq(boolean)": [
+//       [
+//         false,
+//         true,
+//         false
+//       ],
+//       [
+//         false,
+//         false,
+//         false
+//       ]
+//     ]
+//   }
+// }
+package statement_mask_update_pass
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output
+  robotic platform rp0 {
+    event output : Obs
+  }
+  controller ctrl0 {
+    event output : Obs
+    stm stm0 {
+      var mask : BoolLidarMask = BoolLidarMask(| values = <false, true, false>, baseAngle = -1 |)
+      event output : Obs
+      initial i0
+      state s0 {}
+      transition t0 {
+        from i0
+        to s0
+        action mask.values = <false, false, false>; output ! Obs(| mask = mask |)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}
+record Obs { mask: BoolLidarMask }
+datatype BoolLidarMask { values : Seq(boolean) baseAngle : int }
