@@ -8,8 +8,9 @@ the verification results.
 The translator is the system under test. For each RoboChart expression or
 statement, a test case records the input values and the result that the
 translated Python produced. RoboTool and FDR are the oracle: they check
-whether the recorded result agrees with RoboChart's semantics. The Python is
-never run by the checks. A refuted observation is evidence of a translator
+whether the recorded result agrees with RoboChart's semantics. The Python
+results are supplied via `data/cases.csv`.
+A refuted observation is evidence of a translator
 defect; a verdict applies only to the supplied inputs, value domains and
 helper equations.
 
@@ -17,14 +18,14 @@ helper equations.
 
 | Path | Contents |
 | --- | --- |
-| `data/cases.csv` | The 548 expression cases supplied by ExpressionTests. |
-| `data/statement_cases.csv` | Six source statement cases and 22 supplementary statement examples. |
+| `data/cases.csv` | The 548 expression cases. |
+| `data/statement_cases.csv` | Statement cases: these are currently dummy testing cases. |
 | `data/supplementary_expression_cases.csv` | Three further expression examples, generated separately. |
 | `data/shared_fixtures.json` | Fixed declarations for expression cases that name context their row does not declare. |
 | `testsuite-project/` | The RoboTool Modeling Project generated from `data/`, with its diagrams and results. |
 | `check` | The script that regenerates the project and compares it with the committed copy. |
 
-Inside `testsuite-project/`:
+We also have the generated RoboChart project `testsuite-project/`: This contains,
 
 - `cases/`: one RoboChart `.rct` model per case that could be represented;
 - `representations.aird`: the native RoboChart diagrams of those models;
@@ -34,9 +35,9 @@ Inside `testsuite-project/`:
 - `verification-results.csv` and `verification-results.md`: the verdict for every case;
 - `verification-logs/`: RoboTool's and FDR's output for each case.
 
-The generated CSP (`csp-gen/`, `src-gen/`) is not kept in Git.
+The generated CSP (`csp-gen/`, `src-gen/`) is not tracked by Git.
 
-## Install the tools
+## Install the generation tools
 
 The testsuite project is produced and checked by two tools, `testsuite-generator`
 and `testsuite-runner`, from
@@ -52,10 +53,9 @@ cargo install --locked --path crates/testsuite-runner
 
 Its [README](https://github.com/twright/robochart-testsuite-generator#readme)
 lists the prerequisites (Rust, RoboTool 1.2.2026062401, Java and an activated
-FDR), explains what to do if FDR cannot reach its licensing servers (the
-certificate problem), and describes the input format of the files in `data/`.
-RoboTool 1.2.2026062401 is the version used to generate the committed diagrams
-and results.
+FDR), includes troubleshooting advice, and describes the input format of the
+files in `data/`. RoboTool 1.2.2026062401 is the version used to generate the
+committed diagrams and results.
 
 `testsuite-runner` finds RoboTool and FDR through two settings, each given as
 an environment variable or an option (the option wins):
@@ -68,7 +68,7 @@ an environment variable or an option (the option wins):
 If the two programs are not on `PATH`, `check` uses the programs named by
 `TESTSUITE_GENERATOR` and `TESTSUITE_RUNNER`.
 
-## Review the diagrams
+## Open the RoboChart models
 
 1. In RoboTool 1.2.2026062401, choose **File → Import → General → Existing
    Projects into Workspace** and select this repository's `testsuite-project/`
@@ -151,9 +151,3 @@ numbering within a run) with the committed ones. Pass `--robotool-home` and
 `verification-results.md` gives the same results with a breakdown by category
 and links to each model, and the generator repository's documentation of
 RoboTool findings explains how each status is decided.
-
-## Mutation testing
-
-How well these checks detect faults is tested by mutating the cases and seeing
-whether the checks notice. The campaign and its results are in
-<https://github.com/twright/robochart-testsuite-mutation>.
